@@ -1,28 +1,23 @@
 <?php
-// login.php
 session_start();
 require_once 'config/db.php';
 
 $error = '';
 
-// ✅ Si no hay captcha generado aún, crear uno y guardarlo en sesión
 if (!isset($_SESSION['op1']) || !isset($_SESSION['op2'])) {
     $_SESSION['op1'] = rand(1, 9);
     $_SESSION['op2'] = rand(1, 9);
 }
 
-// Cuando se envía el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $correo = trim($_POST['correo'] ?? '');
     $contrasena = $_POST['contrasena'] ?? '';
     $respuesta = $_POST['captcha'] ?? '';
 
-    // ✅ Verificar operación con lo almacenado en sesión
     $suma_correcta = $_SESSION['op1'] + $_SESSION['op2'];
 
     if ($respuesta != $suma_correcta) {
         $error = "Operación matemática incorrecta. Inténtalo de nuevo.";
-        // Generar nueva operación después del intento fallido
         $_SESSION['op1'] = rand(1, 9);
         $_SESSION['op2'] = rand(1, 9);
     } elseif (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
@@ -33,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $stmt->fetch();
 
         if ($user && password_verify($contrasena, $user['contrasena'])) {
-            // ✅ Si todo está correcto, limpiar captcha de sesión
             unset($_SESSION['op1'], $_SESSION['op2']);
             session_regenerate_id(true);
             $_SESSION['user_id'] = $user['id'];
@@ -42,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } else {
             $error = "Credenciales incorrectas.";
-            // Generar nueva operación después del intento fallido
             $_SESSION['op1'] = rand(1, 9);
             $_SESSION['op2'] = rand(1, 9);
         }
@@ -63,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="logo">🎬</div>
         <div>
           <h1>Iniciar sesión</h1>
-          <div style="color:var(--muted);font-size:13px">Accede a tus recomendaciones</div>
+          <div style="color:var(--muted);font-size:13px">Accede a tu cuenta</div>
         </div>
       </div>
       <div class="actions">
@@ -94,7 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
         </div>
 
-        <!-- ✅ Captcha con valores almacenados -->
         <div class="input">
           <label for="captcha">Resuelve la operación: <?= $_SESSION['op1'] ?> + <?= $_SESSION['op2'] ?> = ?</label>
           <input id="captcha" name="captcha" type="number" required>

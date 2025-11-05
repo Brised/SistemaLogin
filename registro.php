@@ -1,5 +1,4 @@
 <?php
-// registro.php
 session_start();
 require_once 'config/db.php';
 
@@ -12,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fecha_nacimiento = $_POST['fecha_nacimiento'] ?: null;
     $genero = $_POST['genero'] ?: null;
 
-    // Validaciones básicas
     if (strlen($nombre) < 2) {
         $errors[] = "El nombre debe tener al menos 2 caracteres.";
     }
@@ -20,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "Correo no válido.";
     }
 
-    // Reglas de contraseña
     $pwErrors = [];
     if (strlen($contrasena) < 8) $pwErrors[] = "mínimo 8 caracteres";
     if (!preg_match('/[A-Z]/', $contrasena)) $pwErrors[] = "una letra mayúscula";
@@ -32,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "La contraseña debe contener: " . implode(', ', $pwErrors) . ".";
     }
 
-    // Si no hay errores, insertar
     if (empty($errors)) {
         $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE correo = ?");
         $stmt->execute([$correo]);
@@ -44,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $stmt->execute([$nombre, $correo, $hash, $fecha_nacimiento, $genero]);
 
-                // ✅ Redirección automática
                 echo "<script>
                         alert('Registro correcto. Ya puedes iniciar sesión.');
                         window.location.href = 'login.php';
@@ -71,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="logo">🎬</div>
         <div>
           <h1>Registro</h1>
-          <div style="color:var(--muted);font-size:13px">Crea tu cuenta</div>
+          <div style="color:var(--muted);font-size:13px">Crea tu cuenta para comenzar</div>
         </div>
       </div>
       <div class="actions">

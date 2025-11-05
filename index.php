@@ -1,5 +1,4 @@
 <?php
-// index.php
 session_start();
 $logeado = isset($_SESSION['user_id']);
 ?>
@@ -34,20 +33,20 @@ $logeado = isset($_SESSION['user_id']);
     <main class="card">
       <h2>Bienvenido/a</h2>
       <p style="color:var(--muted)">
-        Este sitio contiene mis recomendaciones de las mejores películas que vi en 2025.
-        Para ver las fichas completas debes registrarte e iniciar sesión. ¡Regístrate y descubre nuevas películas!
+        Estas son mis recomendaciones de películas del 2025 que he visto hasta ahora. Si quieres descubrir más, ver las reseñas completas y conocer de qué trata cada una, 
+        regístrate e inicia sesión. ¡Explora nuevas historias y encuentra tu próxima película favorita!
       </p>
 
       <section style="margin-top:18px" class="card">
         <h3>Sobre el sitio</h3>
         <p style="color:var(--muted)">
-          Encontrarás tarjetas con imagen, una pequeña sinopsis y enlace para volver al inicio.
-          La página de películas está protegida: solo usuarios con sesión activa pueden verla.
+          Las películas están organizadas en tarjetas con su imagen y una breve descripción. Al registrarte e iniciar sesión, podrás acceder a más información sobre cada título, 
+          leer reseñas detalladas y ver los tráilers. ¡Disfruta explorando mis recomendaciones del 2025 y encuentra tus próximas favoritas!
         </p>
       </section>
     </main>
 
-    <footer class="footer">© 2025 - Tus recomendaciones personales</footer>
+    <footer class="footer">© 2025 - Mis recomendaciones personales</footer>
   </div>
 </body>
 </html>

@@ -1,5 +1,4 @@
 <?php
-// recuperar.php
 require_once 'config/db.php';
 session_start();
 
@@ -12,17 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
         $error = "Por favor, ingresa un correo válido.";
     } else {
-        // Verificar si el correo existe
         $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE correo = ?");
         $stmt->execute([$correo]);
         $user = $stmt->fetch();
 
         if ($user) {
-            // Generar una nueva contraseña temporal
             $nueva_contrasena = substr(str_shuffle('ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789@$!%*?&'), 0, 10);
             $hash = password_hash($nueva_contrasena, PASSWORD_DEFAULT);
 
-            // Actualizar en la base de datos
             $update = $pdo->prepare("UPDATE usuarios SET contrasena = ? WHERE correo = ?");
             $update->execute([$hash, $correo]);
 
