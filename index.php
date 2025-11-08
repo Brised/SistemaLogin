@@ -22,7 +22,7 @@ $logeado = isset($_SESSION['user_id']);
       <div class="actions">
         <?php if($logeado): ?>
           <a href="peliculas.php">Ver películas</a>
-          <a href="logout.php">Cerrar sesión</a>
+          <a href="#" id="logoutBtn">Cerrar sesión</a>
         <?php else: ?>
           <a href="registro.php">Registrarse</a>
           <a href="login.php">Iniciar sesión</a>
@@ -45,8 +45,18 @@ $logeado = isset($_SESSION['user_id']);
         </p>
       </section>
     </main>
-
-    <footer class="footer">© 2025 - Mis recomendaciones personales</footer>
   </div>
+
+  <?php if($logeado): ?>
+  <script>
+    document.getElementById("logoutBtn").addEventListener("click", function(e){
+      e.preventDefault();
+      const confirmLogout = confirm("¿Estás seguro de que deseas cerrar sesión?");
+      if(confirmLogout){
+        window.location.href = "logout.php";
+      }
+    });
+  </script>
+  <?php endif; ?>
 </body>
 </html>

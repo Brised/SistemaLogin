@@ -95,10 +95,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div style="margin-top:12px">
           <button class="btn" type="submit">Entrar</button>
         </div>
-
-        <div style="margin-top:10px; text-align:center;">
-            <a href="recuperar.php" style="color:#5ab0ff;">¿Olvidaste tu contraseña?</a>
-        </div>
       </form>
     </main>
 
