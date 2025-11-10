@@ -20,13 +20,8 @@ $logeado = isset($_SESSION['user_id']);
         </div>
       </div>
       <div class="actions">
-        <?php if($logeado): ?>
-          <a href="peliculas.php">Ver películas</a>
-          <a href="#" id="logoutBtn">Cerrar sesión</a>
-        <?php else: ?>
           <a href="registro.php">Registrarse</a>
-          <a href="login.php">Iniciar sesión</a>
-        <?php endif; ?>
+          <a href="login.php">Iniciar sesión</a> 
       </div>
     </header>
 

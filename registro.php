@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "El nombre debe tener al menos 2 caracteres.";
     }
     if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Correo no válido.";
+        $errors[] = "⚠️ Correo no válido. Asegúrate de incluir el símbolo @ en tu dirección de correo.";
     }
 
     $pwErrors = [];
@@ -94,9 +94,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
           <div class="input">
             <label for="correo">Correo electrónico</label>
-            <input id="correo" name="correo" type="email" value="<?=htmlspecialchars($_POST['correo'] ?? '')?>" required>
-            <small id="mailHelp" style="color:var(--muted)">Incluye el símbolo @ para que sea válido.</small>
+            <input id="correo" name="correo" type="email" 
+            placeholder="ejemplo@correo.com"
+            value="<?=htmlspecialchars($_POST['correo'] ?? '')?>" required>
           </div>
+
 
           <div class="input">
             <label for="fecha_nacimiento">Fecha de nacimiento</label>

@@ -26,7 +26,6 @@ $user_name = $_SESSION['user_name'] ?? 'Usuario';
       </div>
     </div>
     <div class="actions">
-      <a href="index.php">Inicio</a>
       <a href="#" id="logoutBtn">Cerrar sesión</a>
     </div>
   </header>
