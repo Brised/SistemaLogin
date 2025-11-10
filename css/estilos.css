@@ -14,7 +14,6 @@
 
 /* Reset y base*/
 * { box-sizing: border-box; }
-html, body { height: 100%; margin: 0; }
 
 body {
   font-family: 'Nunito', sans-serif;
@@ -404,7 +403,7 @@ option {
 
 /* Pie de página*/
 .footer {
-  margin-top: 30px;
+  margin-top: 20px;
   text-align: center;
   color: var(--muted);
   font-size: 14px;
